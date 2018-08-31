@@ -1,4 +1,117 @@
 <!DOCTYPE html>
-<html>
-<p> rlund.io </p>
+<html ng-app="index" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ryan Lund</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.8/typed.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+
+    <script src="js/index.js"></script>
+</head>
+<body ng-controller="indexController as index" class="vh-100">
+    <div class="loading-bg">
+        <div class="row vh-20"></div>
+        <div class="row vh-60 vertical-center">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <p id="loading-text" class="text-left"></p>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row vh-20 vertical-center">
+            <div class="col-5"></div>
+            <div class="col-2 text-center">
+                <button class="btn btn-outline-light" onclick="postIntro()">learn more</button>
+            </div>
+            <div class="col-5"></div>
+        </div>
+    </div>
+    <div id="resume">
+        <div class="row px-50"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-left">
+                <h1>resume</h1>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div ng-repeat="item in resumeItems">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <h2>{{item.title}} @ {{item.company}}</h2>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <h5>{{item.startDate}} - {{item.endDate}}</h5>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row px-15"></div>
+            <div ng-repeat="action in item.actions">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <h5>{{action}}</h5>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+                <div class="row px-10"></div>
+            </div>
+            <div class="row px-40"></div>
+        </div>
+    </div>
+    <div id="education">
+        <div class="row px-50"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-left">
+                <h1>education</h1>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row vh-100"></div>
+    </div>
+    <div id="volunteering">
+        <div class="row px-50"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-left">
+                <h1>volunteering</h1>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row vh-100"></div>
+    </div>
+    <div id="skills">
+        <div class="row px-50"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-left">
+                <h1>skills</h1>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row vh-100"></div>
+    </div>
+    <div id="contact">
+        <div class="row px-50"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-left">
+                <h1>contact</h1>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row vh-25"></div>
+    </div>
+</body>
 </html>
