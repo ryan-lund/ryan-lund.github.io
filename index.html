@@ -1,117 +1,157 @@
 <!DOCTYPE html>
-<html ng-app="index" lang="en">
+<html ang="en">
 <head>
     <meta charset="UTF-8">
     <title>Ryan Lund</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.8/typed.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
-
-    <script src="js/index.js"></script>
 </head>
-<body ng-controller="indexController as index" class="vh-100">
-    <div class="loading-bg">
-        <div class="row vh-20"></div>
-        <div class="row vh-60 vertical-center">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <p id="loading-text" class="text-left"></p>
-            </div>
-            <div class="col-1"></div>
+<body class="vh-100">
+    <nav class="body-nav">
+        <div class = "body-nav-logo">
+            <h1> rlund.io </h1>
         </div>
-        <div class="row vh-20 vertical-center">
-            <div class="col-5"></div>
-            <div class="col-2 text-center">
-                <button class="btn btn-outline-light" onclick="postIntro()">learn more</button>
-            </div>
-            <div class="col-5"></div>
+        <div class="body-nav-links">
+            <ul>
+                <li><a href="#">Experience</a></li>
+                <li><a href="#">Research</a></li>
+                <li><a href="#">Education</a></li>
+                <li><a href="#">Volunteering</a></li>
+            </ul>
+        </div>
+        <div class="body-nav-contact">
+            <a class="btn btn-body-nav" href="#" role="button">Contact</a>
+        </div>
+    </nav>
+    <div class="body-intro-wrap">
+        <div class="body-intro">
         </div>
     </div>
-    <div id="resume">
-        <div class="row px-50"></div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10 text-left">
-                <h1>resume</h1>
+    <div class="body-wrap body-experience-wrap">
+        <div class="body-section body-experience">
+            <div class="body-section-title">
+                <h1> Experience </h1>
             </div>
-            <div class="col-1"></div>
-        </div>
-        <div ng-repeat="item in resumeItems">
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <h2>{{item.title}} @ {{item.company}}</h2>
-                </div>
-                <div class="col-2"></div>
-            </div>
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <h5>{{item.startDate}} - {{item.endDate}}</h5>
-                </div>
-                <div class="col-2"></div>
-            </div>
-            <div class="row px-15"></div>
-            <div ng-repeat="action in item.actions">
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <h5>{{action}}</h5>
+            <div class="body-job-wrap body-experience-job-wrap">
+                <div class="body-job body-experience-job">
+                    <div class="body-job-left body-experience-job-left">
+                        <img class="body-job-logo body-experience-job-logo"  src="img/cisco.svg" alt="Cisco Logo">
+                        <p class="body-job-title body-experience-job-title"> SDE Intern </p>
+                        <p class="body-job-dates body-experience-job-dates"> May 2019 - August 2019 </p>
                     </div>
-                    <div class="col-2"></div>
+                    <div class="body-job-right body-experience-job-right">
+                        <ul>
+                            <li>- Description of first thing done at this job</li>
+                            <li>- Description of second thing done at this job</li>
+                            <li>- Description of third thing done at this job</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="row px-10"></div>
+                <div class="body-job body-experience-job">
+                    <div class="body-job-left body-experience-job-left">
+                        <img class="body-job-logo body-experience-job-logo"  src="img/amazon.svg" alt="Amazon Logo">
+                        <p class="body-job-title body-experience-job-title"> SDE Intern </p>
+                        <p class="body-job-dates body-experience-job-dates"> May 2018 - August 2018 </p>
+                    </div>
+                    <div class="body-job-right body-experience-job-right">
+                        <ul>
+                            <li>- Description of first thing done at this job</li>
+                            <li>- Description of second thing done at this job</li>
+                            <li>- Description of third thing done at this job</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="body-job body-experience-job">
+                    <div class="body-job-left body-experience-job-left">
+                        <img class="body-job-logo body-experience-job-logo" src="img/centrify.svg" alt="Centrify Logo">
+                        <p class="body-job-title body-experience-job-title"> SDE Intern </p>
+                        <p class="body-job-dates body-experience-job-dates"> May 2017 - August 2017 </p>
+                    </div>
+                    <div class="body-job-right body-experience-job-right">
+                        <ul>
+                            <li>- Description of first thing done at this job</li>
+                            <li>- Description of second thing done at this job</li>
+                            <li>- Description of third thing done at this job</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="row px-40"></div>
         </div>
     </div>
-    <div id="education">
-        <div class="row px-50"></div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10 text-left">
-                <h1>education</h1>
+    <div class="body-wrap body-research-wrap">
+        <div class="body-section body-research">
+            <div class="body-section-title">
+                <h1> Research </h1>
             </div>
-            <div class="col-1"></div>
+            <div class="body-job-wrap body-research-job-wrap">
+                <div class="body-job body-research-job">
+                    <div class="body-job-left body-research-job-left">
+                        <img class="body-job-logo body-research-job-logo"  src="img/bwrc.png" alt="BWRC Logo">
+                        <p class="body-job-title body-research-job-title"> Berkeley Wireless <br> Research Center </p>
+                        <p class="body-job-dates body-research-job-dates"> February 2019 - August 2019 </p>
+                    </div>
+                    <div class="body-job-right body-research-job-right">
+                        <ul>
+                            <li>- Description of first thing done at this job</li>
+                            <li>- Description of second thing done at this job</li>
+                            <li>- Description of third thing done at this job</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="body-job body-research-job">
+                    <div class="body-job-left body-research-job-left">
+                        <img class="body-job-logo body-research-job-logo"  src="img/swarm.png" alt="Swarm Lab Logo">
+                        <p class="body-job-title body-research-job-title"> Swarm Lab </p>
+                        <p class="body-job-dates body-research-job-dates"> August 2018 - December 2018 </p>
+                    </div>
+                    <div class="body-job-right body-research-job-right">
+                        <ul>
+                            <li>- Description of first thing done at this job</li>
+                            <li>- Description of second thing done at this job</li>
+                            <li>- Description of third thing done at this job</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row vh-100"></div>
     </div>
-    <div id="volunteering">
-        <div class="row px-50"></div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10 text-left">
-                <h1>volunteering</h1>
+    <div class="body-wrap body-education-wrap">
+        <div class="body-section body-education">
+            <div class="body-section-title">
+                <h1> Education </h1>
             </div>
-            <div class="col-1"></div>
+            <div class="body-job-wrap body-education-job-wrap">
+                <div class="body-job body-education-job">
+                    <div class="body-job-left body-education-job-left">
+                        <img class="body-job-logo body-education-job-logo"  src="img/berkeley.png" alt="Berkeley Seal">
+                    </div>
+                    <div class="body-job-right body-education-job-right">
+                        <p class="body-job-title body-education-job-title"> University of California Berkeley
+                        </p>
+                        <p class="body-education-job-degree"> B.S. Electrical Engineering and Computer Science ('20)
+                        </p>
+                        <p class="body-education-job-honors"> Honors Program with a breadth focus in Business Administration
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row vh-100"></div>
     </div>
-    <div id="skills">
-        <div class="row px-50"></div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10 text-left">
-                <h1>skills</h1>
+    <div class="body-wrap body-volunteering-wrap">
+        <div class="body-section body-volunteering">
+            <div class="body-section-title">
+                <h1> Volunteering </h1>
             </div>
-            <div class="col-1"></div>
         </div>
-        <div class="row vh-100"></div>
     </div>
-    <div id="contact">
-        <div class="row px-50"></div>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10 text-left">
-                <h1>contact</h1>
-            </div>
-            <div class="col-1"></div>
+    <div class="body-wrap body-contact-wrap">
+        <div class="body-section body-contact">
         </div>
-        <div class="row vh-25"></div>
     </div>
 </body>
 </html>
