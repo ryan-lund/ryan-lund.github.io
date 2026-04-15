@@ -6,7 +6,9 @@
   <title>Ryan Lund | Resume</title>
   <meta name="description" content="Resume for Ryan Lund, Member of Technical Staff working on first-party silicon.">
   <link rel="canonical" href="https://ryan-lund.github.io/">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
   <meta name="theme-color" content="#121316">
   <meta property="og:title" content="Ryan Lund | Resume">
   <meta property="og:description" content="Member of Technical Staff working on first-party silicon.">
@@ -185,11 +187,19 @@
 
     header {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 28px;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 28px 54px;
       align-items: start;
       border-bottom: 1px solid var(--line);
       padding-bottom: 34px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: start;
+      grid-column: 1 / -1;
     }
 
     .kicker,
@@ -231,7 +241,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
-      gap: 8px 14px;
+      gap: 8px;
       max-width: 360px;
       margin-top: 8px;
       color: var(--muted);
@@ -244,26 +254,70 @@
       white-space: nowrap;
     }
 
+    .contact a {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--code);
+      color: var(--ink);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 10px;
+      text-decoration: none;
+      transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .contact a::before {
+      content: "$ open ";
+      color: var(--accent);
+    }
+
+    .contact a:hover,
+    .contact a:focus-visible {
+      background: var(--panel);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      justify-content: flex-end;
-      margin-top: 22px;
+      justify-content: flex-start;
+      margin-top: 2px;
+      grid-column: 1;
+      grid-row: 2;
     }
 
     .actions button {
       border: 1px solid var(--line);
       border-radius: 7px;
-      background: var(--panel-soft);
+      background: var(--code);
       color: var(--ink);
       cursor: pointer;
-      padding: 7px 10px;
-      transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 10px;
+      transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .actions button::before {
+      color: var(--accent);
+    }
+
+    #theme-toggle::before {
+      content: "$ theme ";
+    }
+
+    #print::before {
+      content: "$ print ";
     }
 
     .actions button:hover,
     .actions button:focus-visible {
+      background: var(--panel);
       border-color: var(--accent);
       color: var(--accent);
       transform: translateY(-1px);
@@ -605,8 +659,22 @@
       }
 
       header,
+      .intro,
       main {
         display: block;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .intro {
+        order: 1;
+      }
+
+      .actions {
+        order: 2;
       }
 
       h1 {
@@ -621,10 +689,6 @@
         justify-content: flex-start;
         max-width: none;
         text-align: left;
-      }
-
-      .actions {
-        justify-content: flex-start;
       }
 
       .section-title {
@@ -776,16 +840,17 @@
   <a class="skip-link" href="#resume">Skip to resume</a>
   <div class="page">
     <header class="reveal">
-      <div>
-        <p class="kicker" aria-hidden="true">resume --profile ryan-lund</p>
-        <h1>Ryan Lund</h1>
-        <p class="headline">Member of Technical Staff at OpenAI working on first-party silicon, with a design verification background in GPU scheduling, UVM-based verification, and advanced stimulus modeling.</p>
+      <div class="intro">
+        <div>
+          <p class="kicker" aria-hidden="true">resume --profile ryan-lund</p>
+          <h1>Ryan Lund</h1>
+          <p class="headline">Member of Technical Staff at OpenAI working on first-party silicon, with a design verification background in GPU scheduling, UVM-based verification, and advanced stimulus modeling.</p>
+        </div>
+        <address class="contact" aria-label="Contact information">
+          <a href="https://www.linkedin.com/in/rlundcs/">LinkedIn</a>
+          <a href="https://github.com/ryan-lund">GitHub</a>
+        </address>
       </div>
-      <address class="contact" aria-label="Contact information">
-        <span>San Francisco, CA</span>
-        <a href="https://www.linkedin.com/in/rlundcs/">LinkedIn</a>
-        <a href="https://github.com/ryan-lund">GitHub</a>
-      </address>
       <div class="actions" aria-label="Resume actions">
         <button type="button" id="theme-toggle" aria-pressed="false">Dark</button>
         <button type="button" id="print">Print</button>
@@ -993,11 +1058,13 @@
         document.documentElement.dataset.theme = theme;
         localStorage.setItem("theme", theme);
         themeButton.textContent = theme === "dark" ? "Light" : "Dark";
+        themeButton.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
         themeButton.setAttribute("aria-pressed", String(theme === "dark"));
       };
       const syncThemeButton = () => {
         const theme = document.documentElement.dataset.theme || getStoredTheme() || getSystemTheme();
         themeButton.textContent = theme === "dark" ? "Light" : "Dark";
+        themeButton.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
         themeButton.setAttribute("aria-pressed", String(theme === "dark"));
       };
 
