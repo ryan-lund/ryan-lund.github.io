@@ -1,157 +1,952 @@
-<!DOCTYPE html>
-<html ang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Ryan Lund</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ryan Lund | Resume</title>
+  <meta name="description" content="Resume for Ryan Lund, Member of Technical Staff working on first-party silicon.">
+  <meta property="og:title" content="Ryan Lund | Resume">
+  <meta property="og:description" content="Member of Technical Staff working on first-party silicon.">
+  <meta property="og:type" content="website">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #fbfbfb;
+      --ink: #171717;
+      --muted: #5d625c;
+      --line: #d8d6cf;
+      --accent: #0f6b55;
+      --accent-2: #873641;
+      --panel: #ffffff;
+      --panel-soft: rgba(255, 255, 255, 0.66);
+      --code: #edf0eb;
+      --terminal: #20242a;
+      --terminal-ink: #f4f5f3;
+      --terminal-muted: #aeb5bd;
+      --halo: rgba(15, 107, 85, 0.06);
+      --trace: rgba(135, 54, 65, 0.05);
+      --shadow: rgba(23, 23, 23, 0.06);
+    }
 
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121316;
+        --ink: #eceef2;
+        --muted: #a7abb3;
+        --line: #343943;
+        --accent: #83bff1;
+        --accent-2: #e49aa5;
+        --panel: #181a1f;
+        --panel-soft: rgba(24, 26, 31, 0.8);
+        --code: #20242b;
+        --terminal: #0d0f13;
+        --terminal-ink: #eff2f5;
+        --terminal-muted: #9da5b1;
+        --halo: rgba(131, 191, 241, 0.035);
+        --trace: rgba(228, 154, 165, 0.045);
+        --shadow: rgba(0, 0, 0, 0.34);
+      }
+    }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.8/typed.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, var(--halo), transparent 34%, var(--trace)),
+        radial-gradient(circle at 16% 8%, var(--halo), transparent 24rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover,
+    a:focus {
+      color: var(--accent-2);
+    }
+
+    button {
+      font: inherit;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--panel);
+    }
+
+    .page {
+      width: min(100% - 32px, 940px);
+      margin: 0 auto;
+      padding: 48px 0 56px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      transform: translateY(-160%);
+      background: var(--ink);
+      color: var(--panel);
+      padding: 8px 12px;
+      border-radius: 6px;
+      z-index: 2;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: start;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 34px;
+    }
+
+    .kicker,
+    .dates,
+    .terminal-title {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .kicker::before {
+      content: "$";
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 4.8rem;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .headline {
+      margin: 14px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.24rem;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px 14px;
+      max-width: 360px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: right;
+    }
+
+    .contact a,
+    .contact span {
+      white-space: nowrap;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 22px;
+    }
+
+    .actions button {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--panel-soft);
+      color: var(--ink);
+      cursor: pointer;
+      padding: 7px 10px;
+      transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .actions button:hover,
+    .actions button:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 42px 54px;
+      padding-top: 40px;
+    }
+
+    section {
+      display: contents;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .section-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .section-title a::after {
+      content: "#";
+      display: inline-block;
+      margin-left: 7px;
+      color: var(--muted);
+      opacity: 0;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .section-title:hover a::after,
+    .section-title:focus-within a::after {
+      opacity: 0.8;
+      transform: translateX(2px);
+    }
+
+    .section-title a[data-copied="true"]::after {
+      content: "copied";
+      opacity: 1;
+      transform: translateX(2px);
+    }
+
+    .section-body {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    section:last-of-type .section-body {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .terminal {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-soft);
+      box-shadow: 0 12px 30px var(--shadow);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 34px;
+      border-bottom: 1px solid color-mix(in srgb, var(--line), transparent 20%);
+      background: var(--terminal);
+      color: var(--terminal-muted);
+      padding: 7px 12px;
+    }
+
+    .terminal-controls {
+      display: inline-flex;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+
+    .terminal-controls span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--terminal-muted);
+      opacity: 0.7;
+    }
+
+    .terminal-controls span:nth-child(1) {
+      background: #e49aa5;
+    }
+
+    .terminal-controls span:nth-child(2) {
+      background: #d9b35f;
+    }
+
+    .terminal-controls span:nth-child(3) {
+      background: #83bff1;
+    }
+
+    .terminal-title {
+      overflow: hidden;
+      color: var(--terminal-ink);
+      font-size: 0.82rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .terminal-output {
+      padding: 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    .summary {
+      margin: 0;
+      max-width: 720px;
+    }
+
+    .summary::before {
+      content: "stdout";
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .role {
+      margin: 0 0 18px;
+    }
+
+    .role:last-child {
+      margin-bottom: 0;
+    }
+
+    .role-entry {
+      border: 1px solid color-mix(in srgb, var(--line), transparent 20%);
+      border-radius: 6px;
+      background: color-mix(in srgb, var(--panel), transparent 18%);
+      box-shadow: none;
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .role-entry::before {
+      content: "commit " attr(data-commit);
+      display: block;
+      border-bottom: 1px solid color-mix(in srgb, var(--line), transparent 25%);
+      color: var(--accent);
+      font-weight: 700;
+      padding: 10px 14px 0;
+    }
+
+    .role-entry:hover,
+    .role-entry:focus-within,
+    .role.is-active .role-entry {
+      border-color: color-mix(in srgb, var(--accent), var(--line) 45%);
+      transform: translateY(-1px);
+    }
+
+    .role-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px 24px;
+      align-items: start;
+      border-bottom: 1px solid color-mix(in srgb, var(--line), transparent 25%);
+      padding: 8px 14px 13px;
+    }
+
+    .role-title h3::before {
+      content: "Role: ";
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .role-title h3,
+    .education h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+
+    .company,
+    .school {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .company::before {
+      content: "Company: ";
+      color: var(--accent-2);
+    }
+
+    .dates {
+      color: var(--muted);
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .dates::before {
+      content: "Date: ";
+      color: var(--accent-2);
+    }
+
+    .role-body-inner {
+      padding: 12px 14px 14px;
+    }
+
+    .role-body-inner::before {
+      content: "Output:";
+      display: block;
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+
+    ul {
+      margin: 10px 0 0;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      position: relative;
+      margin: 6px 0;
+      padding-left: 18px;
+    }
+
+    li::before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    .education {
+      display: grid;
+      gap: 22px;
+    }
+
+    .education article {
+      border-left: 1px solid var(--line);
+      padding-left: 14px;
+    }
+
+    .education h3::before {
+      content: "deg ";
+      color: var(--accent);
+      font-size: 0.86rem;
+    }
+
+    .school::before {
+      content: "inst: ";
+      color: var(--accent-2);
+    }
+
+    .publication-list {
+      margin-top: 10px;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .skill-group {
+      min-height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-soft);
+      padding: 14px 16px;
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+
+    .skill-group h3::before {
+      content: "install ";
+      color: var(--accent-2);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .skill-group:hover,
+    .skill-group:focus-within {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .skill-group h3 {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    .skill-group p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .skill-group p::before {
+      content: "deps: ";
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 420ms ease, transform 420ms ease;
+    }
+
+    .js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      margin-top: 46px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      text-align: right;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 24px, 940px);
+        padding-top: 30px;
+      }
+
+      header,
+      main {
+        display: block;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .headline {
+        font-size: 1.08rem;
+      }
+
+      .contact {
+        justify-content: flex-start;
+        max-width: none;
+        text-align: left;
+      }
+
+      .actions {
+        justify-content: flex-start;
+      }
+
+      .section-title {
+        margin: 34px 0 16px;
+      }
+
+      .section-body {
+        padding-bottom: 28px;
+      }
+
+      .terminal-output {
+        padding: 14px;
+      }
+
+      .role-summary {
+        display: block;
+      }
+
+      .dates {
+        display: block;
+        margin-top: 6px;
+        white-space: normal;
+      }
+
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        text-align: left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
+      }
+
+      .js .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media print {
+      :root {
+        --bg: #ffffff;
+        --ink: #000000;
+        --muted: #333333;
+        --line: #bbbbbb;
+        --accent: #000000;
+        --accent-2: #000000;
+        --panel: #ffffff;
+        --panel-soft: #ffffff;
+        --code: #ffffff;
+        --terminal: #ffffff;
+        --terminal-ink: #000000;
+        --terminal-muted: #333333;
+        --shadow: transparent;
+      }
+
+      body {
+        background: #ffffff;
+        font-size: 11pt;
+      }
+
+      a {
+        color: #000000;
+        text-decoration: none;
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      header {
+        padding-bottom: 18px;
+      }
+
+      h1 {
+        font-size: 32pt;
+      }
+
+      main {
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 22px 30px;
+        padding-top: 20px;
+      }
+
+      .section-body {
+        padding-bottom: 18px;
+      }
+
+      .terminal {
+        border: 0;
+        box-shadow: none;
+      }
+
+      .terminal-bar {
+        display: none;
+      }
+
+      .terminal-output {
+        padding: 0;
+      }
+
+      .role,
+      .role-entry {
+        break-inside: avoid;
+      }
+
+      .role-entry {
+        border: 0;
+        box-shadow: none;
+      }
+
+      .role-summary,
+      .role-body-inner {
+        padding: 0;
+      }
+
+      .actions,
+      .kicker,
+      footer,
+      .skip-link {
+        display: none !important;
+      }
+
+      .skill-group {
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+    }
+  </style>
 </head>
-<body class="vh-100">
-    <nav class="body-nav">
-        <div class = "body-nav-logo">
-            <h1> rlund.io </h1>
+<body>
+  <a class="skip-link" href="#resume">Skip to resume</a>
+  <div class="page">
+    <header class="reveal">
+      <div>
+        <p class="kicker" aria-hidden="true">resume --profile ryan-lund</p>
+        <h1>Ryan Lund</h1>
+        <p class="headline">Member of Technical Staff at OpenAI working on first-party silicon, with a design verification background in GPU scheduling, UVM-based verification, and advanced stimulus modeling.</p>
+      </div>
+      <address class="contact" aria-label="Contact information">
+        <span>San Francisco, CA</span>
+        <a href="https://www.linkedin.com/in/rlundcs/">LinkedIn</a>
+        <a href="https://github.com/ryan-lund">GitHub</a>
+      </address>
+      <div class="actions" aria-label="Resume actions">
+        <button type="button" id="print">Print</button>
+      </div>
+    </header>
+
+    <main id="resume">
+      <section aria-labelledby="summary-title">
+        <h2 class="section-title reveal" id="summary-title"><a href="#summary-title">Summary</a></h2>
+        <div class="section-body terminal reveal">
+          <div class="terminal-bar" aria-hidden="true">
+            <span class="terminal-controls"><span></span><span></span><span></span></span>
+            <span class="terminal-title">ryan@resume:~$ cat summary.txt</span>
+          </div>
+          <div class="terminal-output">
+            <p class="summary">Design verification engineer with 4+ years of experience across GPU scheduling, verification infrastructure, and design-to-performance feedback loops. Proven track record developing complex DV infrastructure, identifying micro-architectural bugs, and building stimulus that exposes scheduler behavior and system-level deadlocks.</p>
+          </div>
         </div>
-        <div class="body-nav-links">
-            <ul>
-                <li><a href="#">Experience</a></li>
-                <li><a href="#">Research</a></li>
-                <li><a href="#">Education</a></li>
-                <li><a href="#">Volunteering</a></li>
-            </ul>
-        </div>
-        <div class="body-nav-contact">
-            <a class="btn btn-body-nav" href="#" role="button">Contact</a>
-        </div>
-    </nav>
-    <div class="body-intro-wrap">
-        <div class="body-intro">
-        </div>
-    </div>
-    <div class="body-wrap body-experience-wrap">
-        <div class="body-section body-experience">
-            <div class="body-section-title">
-                <h1> Experience </h1>
-            </div>
-            <div class="body-job-wrap body-experience-job-wrap">
-                <div class="body-job body-experience-job">
-                    <div class="body-job-left body-experience-job-left">
-                        <img class="body-job-logo body-experience-job-logo"  src="img/cisco.svg" alt="Cisco Logo">
-                        <p class="body-job-title body-experience-job-title"> SDE Intern </p>
-                        <p class="body-job-dates body-experience-job-dates"> May 2019 - August 2019 </p>
-                    </div>
-                    <div class="body-job-right body-experience-job-right">
-                        <ul>
-                            <li>- Description of first thing done at this job</li>
-                            <li>- Description of second thing done at this job</li>
-                            <li>- Description of third thing done at this job</li>
-                        </ul>
-                    </div>
+      </section>
+
+      <section aria-labelledby="experience-title">
+        <h2 class="section-title reveal" id="experience-title"><a href="#experience-title">Experience</a></h2>
+        <div class="section-body terminal reveal">
+          <div class="terminal-bar" aria-hidden="true">
+            <span class="terminal-controls"><span></span><span></span><span></span></span>
+            <span class="terminal-title">ryan@resume:~$ git log --reverse --work</span>
+          </div>
+          <div class="terminal-output timeline">
+            <article class="role" tabindex="0">
+              <div class="role-entry" data-commit="2026-openai-1p-silicon">
+                <div class="role-summary">
+                  <div class="role-title">
+                    <h3>Member of Technical Staff</h3>
+                    <p class="company">OpenAI</p>
+                  </div>
+                  <span class="dates">Feb 2026 - Present</span>
                 </div>
-                <div class="body-job body-experience-job">
-                    <div class="body-job-left body-experience-job-left">
-                        <img class="body-job-logo body-experience-job-logo"  src="img/amazon.svg" alt="Amazon Logo">
-                        <p class="body-job-title body-experience-job-title"> SDE Intern </p>
-                        <p class="body-job-dates body-experience-job-dates"> May 2018 - August 2018 </p>
-                    </div>
-                    <div class="body-job-right body-experience-job-right">
-                        <ul>
-                            <li>- Description of first thing done at this job</li>
-                            <li>- Description of second thing done at this job</li>
-                            <li>- Description of third thing done at this job</li>
-                        </ul>
-                    </div>
+                <div class="role-body">
+                  <div class="role-body-inner">
+                    <ul>
+                      <li>Working on first-party silicon.</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="body-job body-experience-job">
-                    <div class="body-job-left body-experience-job-left">
-                        <img class="body-job-logo body-experience-job-logo" src="img/centrify.svg" alt="Centrify Logo">
-                        <p class="body-job-title body-experience-job-title"> SDE Intern </p>
-                        <p class="body-job-dates body-experience-job-dates"> May 2017 - August 2017 </p>
-                    </div>
-                    <div class="body-job-right body-experience-job-right">
-                        <ul>
-                            <li>- Description of first thing done at this job</li>
-                            <li>- Description of second thing done at this job</li>
-                            <li>- Description of third thing done at this job</li>
-                        </ul>
-                    </div>
+              </div>
+            </article>
+
+            <article class="role" tabindex="0">
+              <div class="role-entry" data-commit="2021-apple-gpu-scheduler">
+                <div class="role-summary">
+                  <div class="role-title">
+                    <h3>GPU Design Verification Engineer</h3>
+                    <p class="company">Apple</p>
+                  </div>
+                  <span class="dates">Aug 2021 - Jan 2026</span>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="body-wrap body-research-wrap">
-        <div class="body-section body-research">
-            <div class="body-section-title">
-                <h1> Research </h1>
-            </div>
-            <div class="body-job-wrap body-research-job-wrap">
-                <div class="body-job body-research-job">
-                    <div class="body-job-left body-research-job-left">
-                        <img class="body-job-logo body-research-job-logo"  src="img/bwrc.png" alt="BWRC Logo">
-                        <p class="body-job-title body-research-job-title"> Berkeley Wireless <br> Research Center </p>
-                        <p class="body-job-dates body-research-job-dates"> February 2019 - August 2019 </p>
-                    </div>
-                    <div class="body-job-right body-research-job-right">
-                        <ul>
-                            <li>- Description of first thing done at this job</li>
-                            <li>- Description of second thing done at this job</li>
-                            <li>- Description of third thing done at this job</li>
-                        </ul>
-                    </div>
+                <div class="role-body">
+                  <div class="role-body-inner">
+                    <ul>
+                      <li>Drove unit-level verification of GPU coarse-grained scheduling IP.</li>
+                      <li>Developed advanced stimulus models that identified micro-architectural issues and exposed system-level deadlocks arising from scheduler behavior.</li>
+                      <li>Integrated performance models into hybrid benches to decrease design-to-performance feedback latency.</li>
+                      <li>Built UVM, SystemVerilog, and C++ test bench components and stimulus infrastructure.</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="body-job body-research-job">
-                    <div class="body-job-left body-research-job-left">
-                        <img class="body-job-logo body-research-job-logo"  src="img/swarm.png" alt="Swarm Lab Logo">
-                        <p class="body-job-title body-research-job-title"> Swarm Lab </p>
-                        <p class="body-job-dates body-research-job-dates"> August 2018 - December 2018 </p>
-                    </div>
-                    <div class="body-job-right body-research-job-right">
-                        <ul>
-                            <li>- Description of first thing done at this job</li>
-                            <li>- Description of second thing done at this job</li>
-                            <li>- Description of third thing done at this job</li>
-                        </ul>
-                    </div>
+              </div>
+            </article>
+
+            <article class="role" tabindex="0">
+              <div class="role-entry" data-commit="2020-apple-texture-mapping">
+                <div class="role-summary">
+                  <div class="role-title">
+                    <h3>GPU Design Verification Intern</h3>
+                    <p class="company">Apple</p>
+                  </div>
+                  <span class="dates">May 2020 - Aug 2020</span>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="body-wrap body-education-wrap">
-        <div class="body-section body-education">
-            <div class="body-section-title">
-                <h1> Education </h1>
-            </div>
-            <div class="body-job-wrap body-education-job-wrap">
-                <div class="body-job body-education-job">
-                    <div class="body-job-left body-education-job-left">
-                        <img class="body-job-logo body-education-job-logo"  src="img/berkeley.png" alt="Berkeley Seal">
-                    </div>
-                    <div class="body-job-right body-education-job-right">
-                        <p class="body-job-title body-education-job-title"> University of California Berkeley
-                        </p>
-                        <p class="body-education-job-degree"> B.S. Electrical Engineering and Computer Science ('20)
-                        </p>
-                        <p class="body-education-job-honors"> Honors Program with a breadth focus in Business Administration
-                        </p>
-                    </div>
+                <div class="role-body">
+                  <div class="role-body-inner">
+                    <ul>
+                      <li>Implemented unit-level checks and infrastructure for feature bring-up in texture-mapping IP.</li>
+                    </ul>
+                  </div>
                 </div>
-            </div>
+              </div>
+            </article>
+
+            <article class="role" tabindex="0">
+              <div class="role-entry" data-commit="2019-cisco-as-path-validation">
+                <div class="role-summary">
+                  <div class="role-title">
+                    <h3>Software Engineering Intern</h3>
+                    <p class="company">Cisco</p>
+                  </div>
+                  <span class="dates">May 2019 - Aug 2019</span>
+                </div>
+                <div class="role-body">
+                  <div class="role-body-inner">
+                    <ul>
+                      <li>Worked on proof of concept for AS Path validation standards proposal.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="role" tabindex="0">
+              <div class="role-entry" data-commit="2018-amazon-last-mile">
+                <div class="role-summary">
+                  <div class="role-title">
+                    <h3>Software Engineering Intern</h3>
+                    <p class="company">Amazon</p>
+                  </div>
+                  <span class="dates">May 2018 - Aug 2018</span>
+                </div>
+                <div class="role-body">
+                  <div class="role-body-inner">
+                    <ul>
+                      <li>Developed full-stack internal tools used by Last Mile Delivery operators.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
-    </div>
-    <div class="body-wrap body-volunteering-wrap">
-        <div class="body-section body-volunteering">
-            <div class="body-section-title">
-                <h1> Volunteering </h1>
-            </div>
+      </section>
+
+      <section aria-labelledby="education-title">
+        <h2 class="section-title reveal" id="education-title"><a href="#education-title">Education</a></h2>
+        <div class="section-body terminal reveal">
+          <div class="terminal-bar" aria-hidden="true">
+            <span class="terminal-controls"><span></span><span></span><span></span></span>
+            <span class="terminal-title">ryan@resume:~$ ls education/ publications/</span>
+          </div>
+          <div class="terminal-output education">
+            <article>
+              <h3>M.S. Electrical Engineering and Computer Science</h3>
+              <p class="school">University of California, Berkeley | 2021</p>
+              <ul>
+                <li>Research focused on ASIC design and verification, computer architecture, and domain-specific accelerators.</li>
+              </ul>
+              <ul class="publication-list" aria-label="Published works">
+                <li><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2021/EECS-2021-133.pdf">Design and Application of a Co-Simulation Framework for Chisel</a>, Master's Thesis, 2021.</li>
+                <li><a href="https://doi.org/10.1109/WCAE53984.2021.9707152">Improved Processor Design Project Testing</a>, IEEE Workshop on Computer Architecture Education, 2021.</li>
+              </ul>
+            </article>
+
+            <article>
+              <h3>B.S. Electrical Engineering and Computer Science</h3>
+              <p class="school">University of California, Berkeley | 2020</p>
+            </article>
+          </div>
         </div>
-    </div>
-    <div class="body-wrap body-contact-wrap">
-        <div class="body-section body-contact">
+      </section>
+
+      <section aria-labelledby="skills-title">
+        <h2 class="section-title reveal" id="skills-title"><a href="#skills-title">Skills</a></h2>
+        <div class="section-body terminal reveal">
+          <div class="terminal-bar" aria-hidden="true">
+            <span class="terminal-controls"><span></span><span></span><span></span></span>
+            <span class="terminal-title">ryan@resume:~$ ./skills --grouped</span>
+          </div>
+          <div class="terminal-output skills">
+            <article class="skill-group" tabindex="0">
+              <h3>Hardware Verification</h3>
+              <p>UVM, SystemVerilog, DPI, coverage-driven verification</p>
+            </article>
+            <article class="skill-group" tabindex="0">
+              <h3>Modeling and Performance</h3>
+              <p>C++, Python, performance testing</p>
+            </article>
+            <article class="skill-group" tabindex="0">
+              <h3>Software</h3>
+              <p>Java, Ruby, Bash</p>
+            </article>
+            <article class="skill-group" tabindex="0">
+              <h3>Tools</h3>
+              <p>Verdi, Indigo, Git, Perforce</p>
+            </article>
+          </div>
         </div>
-    </div>
+      </section>
+    </main>
+
+    <footer>
+      Last updated April 2026.
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      document.documentElement.classList.add("js");
+
+      const printButton = document.getElementById("print");
+      const sectionLinks = Array.from(document.querySelectorAll(".section-title a"));
+      const roles = Array.from(document.querySelectorAll(".role"));
+
+      printButton.addEventListener("click", () => window.print());
+
+      sectionLinks.forEach((link) => {
+        link.addEventListener("click", async () => {
+          const url = `${window.location.origin}${window.location.pathname}${link.hash}`;
+          if (navigator.clipboard) {
+            await navigator.clipboard.writeText(url);
+            link.dataset.copied = "true";
+            window.setTimeout(() => {
+              delete link.dataset.copied;
+            }, 1200);
+          }
+        });
+      });
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((items) => {
+          items.forEach((item) => {
+            if (item.isIntersecting) {
+              item.target.classList.add("is-visible");
+              observer.unobserve(item.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+
+        const roleObserver = new IntersectionObserver((items) => {
+          items.forEach((item) => {
+            item.target.classList.toggle("is-active", item.isIntersecting);
+          });
+        }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
+
+        roles.forEach((role) => roleObserver.observe(role));
+      } else {
+        document.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
+      }
+    })();
+  </script>
 </body>
 </html>
