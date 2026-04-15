@@ -22,6 +22,14 @@
   <meta name="twitter:title" content="Ryan Lund | Resume">
   <meta name="twitter:description" content="Member of Technical Staff working on first-party silicon.">
   <meta name="twitter:image" content="https://ryan-lund.github.io/preview.svg">
+  <script>
+    (() => {
+      const theme = localStorage.getItem("theme");
+      if (theme === "light" || theme === "dark") {
+        document.documentElement.dataset.theme = theme;
+      }
+    })();
+  </script>
   <style>
     :root {
       color-scheme: light dark;
@@ -34,9 +42,12 @@
       --panel: #ffffff;
       --panel-soft: rgba(255, 255, 255, 0.66);
       --code: #edf0eb;
-      --terminal: #20242a;
-      --terminal-ink: #f4f5f3;
-      --terminal-muted: #aeb5bd;
+      --terminal: #eef1ed;
+      --terminal-ink: #171717;
+      --terminal-muted: #686d66;
+      --dot-red: #c75161;
+      --dot-yellow: #b57a13;
+      --dot-blue: #2879bd;
       --halo: rgba(15, 107, 85, 0.06);
       --trace: rgba(135, 54, 65, 0.05);
       --shadow: rgba(23, 23, 23, 0.06);
@@ -56,10 +67,57 @@
         --terminal: #0d0f13;
         --terminal-ink: #eff2f5;
         --terminal-muted: #9da5b1;
+        --dot-red: #e49aa5;
+        --dot-yellow: #d9b35f;
+        --dot-blue: #83bff1;
         --halo: rgba(131, 191, 241, 0.035);
         --trace: rgba(228, 154, 165, 0.045);
         --shadow: rgba(0, 0, 0, 0.34);
       }
+    }
+
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #fbfbfb;
+      --ink: #171717;
+      --muted: #5d625c;
+      --line: #d8d6cf;
+      --accent: #0f6b55;
+      --accent-2: #873641;
+      --panel: #ffffff;
+      --panel-soft: rgba(255, 255, 255, 0.66);
+      --code: #edf0eb;
+      --terminal: #eef1ed;
+      --terminal-ink: #171717;
+      --terminal-muted: #686d66;
+      --dot-red: #c75161;
+      --dot-yellow: #b57a13;
+      --dot-blue: #2879bd;
+      --halo: rgba(15, 107, 85, 0.06);
+      --trace: rgba(135, 54, 65, 0.05);
+      --shadow: rgba(23, 23, 23, 0.06);
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #121316;
+      --ink: #eceef2;
+      --muted: #a7abb3;
+      --line: #343943;
+      --accent: #83bff1;
+      --accent-2: #e49aa5;
+      --panel: #181a1f;
+      --panel-soft: rgba(24, 26, 31, 0.8);
+      --code: #20242b;
+      --terminal: #0d0f13;
+      --terminal-ink: #eff2f5;
+      --terminal-muted: #9da5b1;
+      --dot-red: #e49aa5;
+      --dot-yellow: #d9b35f;
+      --dot-blue: #83bff1;
+      --halo: rgba(131, 191, 241, 0.035);
+      --trace: rgba(228, 154, 165, 0.045);
+      --shadow: rgba(0, 0, 0, 0.34);
     }
 
     * {
@@ -225,7 +283,7 @@
     .section-title {
       margin: 0;
       color: var(--muted);
-      font-size: 0.78rem;
+      font-size: 1.08rem;
       font-weight: 800;
       letter-spacing: 0;
       text-transform: none;
@@ -301,15 +359,15 @@
     }
 
     .terminal-controls span:nth-child(1) {
-      background: #e49aa5;
+      background: var(--dot-red);
     }
 
     .terminal-controls span:nth-child(2) {
-      background: #d9b35f;
+      background: var(--dot-yellow);
     }
 
     .terminal-controls span:nth-child(3) {
-      background: #83bff1;
+      background: var(--dot-blue);
     }
 
     .terminal-title {
@@ -632,6 +690,9 @@
         --terminal: #ffffff;
         --terminal-ink: #000000;
         --terminal-muted: #333333;
+        --dot-red: #000000;
+        --dot-yellow: #000000;
+        --dot-blue: #000000;
         --shadow: transparent;
       }
 
@@ -726,6 +787,7 @@
         <a href="https://github.com/ryan-lund">GitHub</a>
       </address>
       <div class="actions" aria-label="Resume actions">
+        <button type="button" id="theme-toggle" aria-pressed="false">Dark</button>
         <button type="button" id="print">Print</button>
       </div>
     </header>
@@ -920,10 +982,40 @@
       document.documentElement.classList.add("js");
 
       const printButton = document.getElementById("print");
+      const themeButton = document.getElementById("theme-toggle");
       const sectionLinks = Array.from(document.querySelectorAll(".section-title a"));
       const roles = Array.from(document.querySelectorAll(".role"));
+      const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+      const getSystemTheme = () => systemDark.matches ? "dark" : "light";
+      const getStoredTheme = () => localStorage.getItem("theme");
+      const setTheme = (theme) => {
+        document.documentElement.dataset.theme = theme;
+        localStorage.setItem("theme", theme);
+        themeButton.textContent = theme === "dark" ? "Light" : "Dark";
+        themeButton.setAttribute("aria-pressed", String(theme === "dark"));
+      };
+      const syncThemeButton = () => {
+        const theme = document.documentElement.dataset.theme || getStoredTheme() || getSystemTheme();
+        themeButton.textContent = theme === "dark" ? "Light" : "Dark";
+        themeButton.setAttribute("aria-pressed", String(theme === "dark"));
+      };
+
+      setTheme(getStoredTheme() || getSystemTheme());
 
       printButton.addEventListener("click", () => window.print());
+
+      themeButton.addEventListener("click", () => {
+        const current = document.documentElement.dataset.theme || getSystemTheme();
+        setTheme(current === "dark" ? "light" : "dark");
+      });
+
+      systemDark.addEventListener("change", () => {
+        if (!getStoredTheme()) {
+          delete document.documentElement.dataset.theme;
+          syncThemeButton();
+        }
+      });
 
       sectionLinks.forEach((link) => {
         link.addEventListener("click", async () => {
