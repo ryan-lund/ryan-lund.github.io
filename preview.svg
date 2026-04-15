@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Ryan Lund resume preview">
+  <rect width="1200" height="630" fill="#121316"/>
+  <rect x="96" y="78" width="1008" height="474" rx="18" fill="#181a1f" stroke="#343943" stroke-width="3"/>
+  <rect x="96" y="78" width="1008" height="58" rx="18" fill="#0d0f13"/>
+  <rect x="96" y="112" width="1008" height="24" fill="#0d0f13"/>
+  <circle cx="128" cy="108" r="9" fill="#e49aa5"/>
+  <circle cx="158" cy="108" r="9" fill="#d9b35f"/>
+  <circle cx="188" cy="108" r="9" fill="#83bff1"/>
+  <text x="232" y="116" fill="#9da5b1" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="26">ryan@resume:~$ cat profile.txt</text>
+  <text x="140" y="232" fill="#eceef2" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="78" font-weight="800">Ryan Lund</text>
+  <text x="144" y="294" fill="#83bff1" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="30">Member of Technical Staff, OpenAI</text>
+  <text x="144" y="352" fill="#a7abb3" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="34">First-party silicon. GPU design verification.</text>
+  <text x="144" y="406" fill="#a7abb3" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="34">UVM, SystemVerilog, C++, performance feedback loops.</text>
+  <text x="144" y="480" fill="#e49aa5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="28">&gt; ryan-lund.github.io</text>
+</svg>
